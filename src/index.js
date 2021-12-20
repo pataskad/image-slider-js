@@ -5,7 +5,7 @@ import "./assets/images/pexels-rachel-xiao-773063.jpg";
 import "./assets/images/pexels-tim-eiden-1374370.jpg";
 import "./assets/images/pexels-timo-volz-1757433.jpg";
 
-window.addEventListener("load", function(e) { 
+window.addEventListener("load", function() { 
     const images = document.getElementsByTagName("img");
     const dotNavs = document.getElementsByClassName("nav-dots");
     const labels = document.querySelectorAll("label");
@@ -46,7 +46,6 @@ window.addEventListener("load", function(e) {
         displayDot();
     }
     function dotClick(e) {
-        console.log(e.target.id);
         currentIndex = parseInt(e.target.id);
         displayImage();
         displayDot();
