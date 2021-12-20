@@ -5,21 +5,18 @@ import "./assets/images/pexels-rachel-xiao-773063.jpg";
 import "./assets/images/pexels-tim-eiden-1374370.jpg";
 import "./assets/images/pexels-timo-volz-1757433.jpg";
 
-window.addEventListener("load", function() { 
+window.addEventListener("load", function(e) { 
     const images = document.getElementsByTagName("img");
     const dotNavs = document.getElementsByClassName("nav-dots");
+    const labels = document.querySelectorAll("label");
+    const leftArrow = document.querySelector(".left");
+    const rightArrow = document.querySelector(".right");
     let currentIndex = 0;
 
-/*     for (let i = 0; i < images.length; i++) {
-        let navDot = document.createElement("li");
-
-        navDot.className = "nav-dots";
-        navDot.setAttribute("onclick", "dotClick(this.id)");
-        navDot.setAttribute("id", parseInt(i));
-
-        let dotContainer = document.querySelector(".carousel-dots");
-        dotContainer.appendChild(navDot);
-    } */
+    for (let i = 0; i < images.length; i++) {
+        labels[i].setAttribute("id", parseInt(i));
+        labels[i].addEventListener("click", dotClick);
+    }
     function displayImage() {
         // function renders images through the carousel, defaulted at index 0
         for (let y = 0; y < images.length; y++) {
@@ -28,10 +25,7 @@ window.addEventListener("load", function() {
         images[currentIndex].style.display = "block";
     }
     function displayDot() { 
-        for (let y = 0; y < dotNavs.length; y++) {
-            dotNavs[y].style.display = "none";
-        }
-        dotNavs[currentIndex].style.display = "block";
+        dotNavs[currentIndex].checked = true;
     }
     function moveLeft() {
         if (currentIndex === 0) {
@@ -40,7 +34,7 @@ window.addEventListener("load", function() {
             currentIndex--;
         }
         displayImage();
-        //displayDot();
+        displayDot();
     }
     function moveRight() {
         if (currentIndex == images.length - 1) {
@@ -48,21 +42,18 @@ window.addEventListener("load", function() {
         } else {
           currentIndex++;
         }
-      
         displayImage();
-        //displayDot();
+        displayDot();
     }
-    function dotClick(i) {
-        currentIndex = i;
+    function dotClick(e) {
+        console.log(e.target.id);
+        currentIndex = parseInt(e.target.id);
         displayImage();
-        //displayDot();
+        displayDot();
     }
-
     displayImage();
-    //displayDot();
+    displayDot();
 
-    const leftArrow = document.querySelector(".left");
     leftArrow.addEventListener("click", moveLeft);
-    const rightArrow = document.querySelector(".right");
     rightArrow.addEventListener("click", moveRight);
 });
